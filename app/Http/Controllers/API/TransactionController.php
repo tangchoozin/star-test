@@ -5,9 +5,23 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Transaction;
 
+
+/**
+ * @group Transaction Management
+ *
+ * APIs for handling user transfers
+ */
+
 class TransactionController extends Controller
 {
-    //
+    /**
+     * View transaction status.
+     *
+     * @group Transaction
+     * @authenticated
+     * @urlParam id integer required The ID of the transaction.
+     */
+
     public function show($id)
     {
         $transaction = Transaction::select('transactions.*', 'transfers.amount')
