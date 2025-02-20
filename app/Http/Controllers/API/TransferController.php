@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Transfer;
-use App\Models\Transaction;
-use App\Models\User;
 use App\Jobs\ProcessTransfer;
+use App\Models\Transaction;
+use App\Models\Transfer;
+use App\Models\User;
 use DB;
+use Illuminate\Http\Request;
 
 class TransferController extends Controller
 {
@@ -38,12 +38,12 @@ class TransferController extends Controller
                 'user_id' => $sender->id,
                 'receiver_id' => $receiver->id,
                 'amount' => $amount,
-                'idempotency_key' => $idempotencyKey
+                'idempotency_key' => $idempotencyKey,
             ]);
 
             $transaction = Transaction::create([
                 'transfer_id' => $transfer->id,
-                'status' => 0
+                'status' => 0,
             ]);
 
             ProcessTransfer::dispatch($transfer);

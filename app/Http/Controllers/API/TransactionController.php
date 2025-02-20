@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Transaction;
-use Illuminate\Support\Facades\Gate;
 
 class TransactionController extends Controller
 {

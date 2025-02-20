@@ -29,7 +29,7 @@ class LogTransactionStatus
             'transaction_id' => $event->transaction->id,
             'old_status' => $event->oldStatus,
             'new_status' => $event->newStatus,
-            'message' => "Transaction status updated.",
+            'message' => 'Transaction status updated.',
         ]);
     }
 }

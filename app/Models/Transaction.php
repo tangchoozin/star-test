@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use App\Events\TransactionStatusUpdate;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Events\TransactionStatusUpdate;
 
 class Transaction extends Model
 {

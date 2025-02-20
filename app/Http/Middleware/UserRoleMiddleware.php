@@ -2,19 +2,18 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Transaction;
 use Closure;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Gate;
-use App\Models\Transaction;
-use App\Models\User;
+use Symfony\Component\HttpFoundation\Response;
 
 class UserRoleMiddleware
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response) $next
      */
     public function handle(Request $request, Closure $next, $permission): Response
     {
@@ -35,7 +34,7 @@ class UserRoleMiddleware
             }
 
             return $next($request);
-        } else if ($permission == 'request-transfer') {
+        } elseif ($permission == 'request-transfer') {
             if ($user->role === 'user' || $user->role === 'admin') {
                 //Need to confirm whether admin also can do request transfer. If yes, then need to add $user->role === 'admin' here
                 return $next($request);
