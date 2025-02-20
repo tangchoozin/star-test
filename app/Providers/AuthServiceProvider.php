@@ -26,22 +26,5 @@ class AuthServiceProvider extends ServiceProvider
     {
         //
         $this->registerPolicies();
-
-        // Combined policy for viewing transactions
-        Gate::define('view-transaction', function ($user, $request) {
-            $transactionId = $request->route('id');
-            $transaction = Transaction::find($transactionId);
-
-            if (!$transaction) {
-                return false;
-            }
-
-            return $user->role === 'admin' || $transaction->user_id === $user->id;
-        });
-
-        // Only regular users can request transfers
-        Gate::define('request-transfer', function ($user) {
-            return $user->role === 'user';
-        });
     }
 }

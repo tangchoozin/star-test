@@ -35,6 +35,13 @@ class UserRoleMiddleware
             }
 
             return $next($request);
+        } else if ($permission == 'request-transfer') {
+            if ($user->role === 'user' || $user->role === 'admin') {
+                //Need to confirm whether admin also can do request transfer. If yes, then need to add $user->role === 'admin' here
+                return $next($request);
+            } else {
+                return response()->json(['message' => 'Unauthorized'], 403);
+            }
         }
 
         // Check other permissions using Gate
